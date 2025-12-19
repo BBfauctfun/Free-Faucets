@@ -159,23 +159,23 @@
     }
   
         /* === STICKY MOBILE CTA === */
-    .sticky-cta {
+        .sticky-cta {
       position: fixed;
-      bottom: 14px;
+      bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
       width: calc(100% - 24px);
       max-width: 520px;
-      z-index: 9999;
-      background: linear-gradient(180deg, rgba(10,14,30,0.95), rgba(5,7,20,0.95));
+      z-index: 10000;
+      background: linear-gradient(180deg, rgba(10,14,30,0.97), rgba(5,7,20,0.97));
       border: 1px solid rgba(0,255,240,0.45);
       border-radius: 20px;
-      padding: 14px 16px 16px;
+      padding: 16px 18px 18px;
       box-shadow:
         0 0 30px rgba(0,255,240,0.35),
         0 0 50px rgba(255,0,255,0.2);
-      backdrop-filter: blur(8px);
-      animation: none;
+      backdrop-filter: blur(10px);
+      text-align: center;
     }
 
     .sticky-cta.pulse {
@@ -188,35 +188,44 @@
       100% { box-shadow: 0 0 20px rgba(0,255,240,0.25); }
     }
 
-    .sticky-cta .dismiss {
+        .sticky-cta .dismiss {
       position: absolute;
-      top: 8px;
-      right: 10px;
-      font-size: 0.9rem;
+      top: 10px;
+      right: 14px;
+      font-size: 1.1rem;
+      line-height: 1;
       cursor: pointer;
-      color: var(--muted);
+      color: var(--accent);
+      opacity: 0.8;
     }
 
-    .sticky-cta .label {
-      font-size: 0.75rem;
+    .sticky-cta .dismiss:hover {
+      opacity: 1;
+    }
+
+        .sticky-cta .label {
+      font-size: 0.7rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
       font-weight: 800;
       margin-bottom: 4px;
+      text-align: center;
     }
 
-    .sticky-cta .stamp {
+        .sticky-cta .stamp {
       font-size: 0.65rem;
       color: var(--muted);
       margin-bottom: 6px;
+      text-align: center;
     }
 
-    .sticky-cta .title {
-      font-size: 1.05rem;
+        .sticky-cta .title {
+      font-size: 1rem;
       font-weight: 900;
       text-transform: uppercase;
       margin-bottom: 10px;
+      text-align: center;
     }
 
     .sticky-cta a {
