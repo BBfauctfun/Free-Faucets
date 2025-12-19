@@ -54,18 +54,21 @@
     }
 
     h1 {
-      font-size: clamp(2.2rem, 6.5vw, 3.2rem);
+      font-size: clamp(2rem, 6vw, 3rem); /* ~10% smaller */
       font-weight: 900;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
+      letter-spacing: -0.015em;
+      margin-bottom: 18px;
       text-transform: uppercase;
+      text-shadow:
+        0 0 18px rgba(0,255,240,0.45),
+        0 0 32px rgba(0,255,240,0.25);
     }
 
     .subtitle {
-      font-size: clamp(1.1rem, 3.5vw, 1.35rem);
+      font-size: clamp(1.05rem, 3.2vw, 1.25rem); /* ~10% smaller */
       color: var(--muted);
-      margin-bottom: 30px;
-      line-height: 1.7;
+      margin-bottom: 28px;
+      line-height: 1.65;
     }
 
     .warning {
@@ -102,33 +105,33 @@
 
     .card h2 {
       margin: 0 0 12px;
-      font-size: 1.4rem;
+      font-size: 1.3rem; /* ~10% smaller */
       font-weight: 900;
       text-transform: uppercase;
     }
 
     .card p {
-      margin: 0 0 20px;
-      font-size: 1.1rem;
+      margin: 0 0 18px;
+      font-size: 1.05rem; /* ~10% smaller */
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.6;
     }
 
     .cta {
       display: inline-block;
       width: 100%;
-      padding: 18px 22px;
+      padding: 16px 20px; /* ~10% smaller */
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #000;
       font-weight: 900;
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      font-size: 1.05rem;
+      font-size: 1rem; /* ~10% smaller */
       border-radius: 999px;
       box-shadow:
-        0 0 26px rgba(0,255,240,0.5),
-        0 0 38px rgba(255,0,255,0.3);
+        0 0 24px rgba(0,255,240,0.5),
+        0 0 36px rgba(255,0,255,0.3);
     }
 
     footer {
@@ -139,7 +142,13 @@
     }
 
     @media (max-width: 480px) {
-      h1 { font-size: 2.4rem; }
+      h1 { font-size: 2.2rem; }
+      .subtitle { font-size: 1.1rem; }
+      .card h2 { font-size: 1.35rem; }
+      .card p { font-size: 1.1rem; }
+      .cta { font-size: 1.05rem; }
+      footer { font-size: 0.9rem; }
+    }
       .subtitle { font-size: 1.15rem; }
       .card h2 { font-size: 1.45rem; }
       .card p { font-size: 1.15rem; }
@@ -152,16 +161,156 @@
       .cta { font-size: 1.25rem; }
       footer { font-size: 1.05rem; }
     }
+  
+        /* === STICKY MOBILE CTA === */
+    .sticky-cta {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: 520px;
+      z-index: 9999;
+      background: linear-gradient(180deg, rgba(10,14,30,0.95), rgba(5,7,20,0.95));
+      border: 1px solid rgba(0,255,240,0.45);
+      border-radius: 20px;
+      padding: 14px 16px 16px;
+      box-shadow:
+        0 0 30px rgba(0,255,240,0.35),
+        0 0 50px rgba(255,0,255,0.2);
+      backdrop-filter: blur(8px);
+      animation: none;
+    }
+
+    .sticky-cta.pulse {
+      animation: pulseGlow 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 20px rgba(0,255,240,0.25); }
+      50% { box-shadow: 0 0 45px rgba(0,255,240,0.55); }
+      100% { box-shadow: 0 0 20px rgba(0,255,240,0.25); }
+    }
+
+    .sticky-cta .dismiss {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .sticky-cta .label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .sticky-cta .stamp {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .sticky-cta .title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .sticky-cta a {
+      display: block;
+      text-align: center;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #000;
+      font-weight: 900;
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      font-size: 0.9rem;
+      box-shadow:
+        0 0 24px rgba(0,255,240,0.45),
+        0 0 36px rgba(255,0,255,0.25);
+    }
+
+    @media (min-width: 768px) {
+      .sticky-cta { display: none; }
+    }
+    }
   </style>
 
   <!-- GoatCounter (no-backend analytics). Replace gc.example with your own domain once created -->
-  <script data-goatcounter="https://bbfaucetfun.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+  <script data-goatcounter="https://gc.example/goatcounter" async src="https://gc.zgo.at/count.js"></script>
 
   <!-- Random Hot Site Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-            const cards = Array.from(document.querySelectorAll('.links .card'));('.card')).filter(c => c.querySelector('.cta'));
+      const cards = Array.from(document.querySelectorAll('.links .card'));
+      if (!cards.length) return;
+
+      // Bias toward Cointiply
+      const cointiply = cards.find(c => c.querySelector('h2')?.innerText === 'Cointiply');
+      const weighted = cointiply && Math.random() < 0.6 ? cointiply : cards[Math.floor(Math.random() * cards.length)];
+
+      const link = weighted.querySelector('a');
+      const title = weighted.querySelector('h2')?.innerText || 'Hot Faucet';
+
+      const hot = document.getElementById('hot-site');
+      if (hot && link) {
+        hot.innerHTML = `🔥 HOT FAUCET RIGHT NOW: <a href="${link.href}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">${title}</a>`;
+      }
+
+      // Sticky CTA
+      const sticky = document.getElementById('stickyCta');
+      const stickyTitle = document.getElementById('stickyTitle');
+      const stickyLink = document.getElementById('stickyLink');
+      const dismiss = document.getElementById('dismissCta');
+
+      if (stickyTitle && stickyLink && link) {
+        stickyTitle.textContent = title;
+        stickyLink.href = link.href;
+        stickyLink.textContent = `Sign Up for ${title}`;
+      }
+
+      // Pulse after idle
+      setTimeout(() => sticky?.classList.add('pulse'), 5000);
+
+      // Dismiss handling
+      dismiss?.addEventListener('click', () => {
+        sticky.style.display = 'none';
+        localStorage.setItem('hideStickyCTA', 'true');
+      });
+
+      if (localStorage.getItem('hideStickyCTA') === 'true') {
+        sticky.style.display = 'none';
+      }
+    });
+      if (!cards.length) return;
+
+      const randomCard = cards[Math.floor(Math.random() * cards.length)];
+      const link = randomCard.querySelector('a');
+      const title = randomCard.querySelector('h2')?.innerText || 'Hot Faucet';
+
+      const hot = document.getElementById('hot-site');
+      if (hot && link) {
+        hot.innerHTML = `🔥 HOT FAUCET RIGHT NOW: <a href="${link.href}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">${title}</a>`;
+      }
+
+      // Update sticky CTA
+      const stickyTitle = document.getElementById('stickyTitle');
+      const stickyLink = document.getElementById('stickyLink');
+      if (stickyTitle && stickyLink && link) {
+        stickyTitle.textContent = title;
+        stickyLink.href = link.href;
+        stickyLink.textContent = `Sign Up for ${title}`;
+      }
+    });('.card')).filter(c => c.querySelector('.cta'));
       if (!cards.length) return;
 
       const TODAY_KEY = new Date().toISOString().slice(0,10);
@@ -284,5 +433,21 @@
       <p>Analytics powered by GoatCounter • Hosted on GitHub Pages</p>
     </footer>
   </main>
+  <!-- STICKY MOBILE CTA -->
+    <div class="sticky-cta" id="stickyCta">
+    <div class="dismiss" id="dismissCta">✕</div>
+    <div class="label">🔥 Trending Today</div>
+    <div class="stamp">✔ Tested today • Scam-free</div>
+    <div class="title" id="stickyTitle">Cointiply</div>
+    <a id="stickyLink" href="https://cointiply.com/r/jMP74" target="_blank" rel="noopener noreferrer">
+      Sign Up for Cointiply
+    </a>
+  </div>
+    <div class="title" id="stickyTitle">Cointiply</div>
+    <a id="stickyLink" href="https://cointiply.com/r/jMP74" target="_blank" rel="noopener noreferrer">
+      Sign Up for Cointiply
+    </a>
+  </div>
+
 </body>
 </html>
