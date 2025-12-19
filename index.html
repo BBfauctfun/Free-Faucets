@@ -7,6 +7,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&display=swap" rel="stylesheet">
 
   <style>
+    /* ==============================
+       GLOBAL MOBILE TYPOGRAPHY FIX
+       ============================== */
+
+    html {
+      font-size: 18px; /* Mobile-first base size */
+      -webkit-text-size-adjust: 100%;
+    }
+
+    @media (min-width: 768px) {
+      html { font-size: 16px; }
+    }
+
     :root {
       --bg: #05060a;
       --accent: #00fff0;
@@ -35,119 +48,102 @@
     .container {
       width: 100%;
       max-width: 920px;
-      padding: 32px 16px 56px;
+      padding: 36px 18px 64px;
       text-align: center;
     }
 
     h1 {
-      font-size: clamp(2.4rem, 7vw, 3.6rem);
+      font-size: clamp(2.6rem, 8vw, 3.8rem);
       font-weight: 900;
       letter-spacing: -0.02em;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       text-transform: uppercase;
     }
 
     .subtitle {
-      font-size: 1.3rem;
+      font-size: clamp(1.35rem, 4vw, 1.6rem);
       color: var(--muted);
-      margin-bottom: 32px;
-      line-height: 1.8;
+      margin-bottom: 36px;
+      line-height: 1.85;
     }
 
     .warning {
       display: inline-block;
-      margin-bottom: 24px;
-      padding: 12px 16px;
+      margin-bottom: 26px;
+      padding: 14px 20px;
       border: 1px solid var(--accent);
       color: var(--accent);
-      font-weight: 800;
+      font-weight: 900;
       text-transform: uppercase;
-      font-size: 0.85rem;
-      letter-spacing: 0.16em;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
       background: rgba(0,255,240,0.05);
-      box-shadow: 0 0 20px rgba(0,255,240,0.15);
+      box-shadow: 0 0 24px rgba(0,255,240,0.2);
     }
 
     .links {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      margin-top: 26px;
     }
 
     .card {
-      background: linear-gradient(180deg, rgba(10,14,30,0.9), rgba(5,7,20,0.9));
-      border: 1px solid rgba(0,255,240,0.25);
-      border-radius: 18px;
-      padding: 22px 18px 24px;
+      background: linear-gradient(180deg, rgba(10,14,30,0.92), rgba(5,7,20,0.95));
+      border: 1px solid rgba(0,255,240,0.3);
+      border-radius: 20px;
+      padding: 28px 22px 30px;
       box-shadow:
-        0 10px 30px rgba(0,0,0,0.7),
-        inset 0 0 0 1px rgba(255,255,255,0.03);
-      backdrop-filter: blur(6px);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+        0 14px 38px rgba(0,0,0,0.75),
+        inset 0 0 0 1px rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
     }
 
     .card h2 {
-      margin: 0 0 10px;
-      font-size: 1.45rem;
-      font-weight: 800;
+      margin: 0 0 14px;
+      font-size: 1.6rem;
+      font-weight: 900;
       text-transform: uppercase;
     }
 
     .card p {
-      margin: 0 0 20px;
-      font-size: 1.15rem;
+      margin: 0 0 22px;
+      font-size: 1.25rem;
       color: var(--muted);
-      line-height: 1.75;
+      line-height: 1.85;
     }
 
     .cta {
       display: inline-block;
       width: 100%;
-      padding: 18px 20px;
+      padding: 22px 24px;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #000;
       font-weight: 900;
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 1rem;
+      letter-spacing: 0.14em;
+      font-size: 1.2rem;
       border-radius: 999px;
       box-shadow:
-        0 0 24px rgba(0,255,240,0.45),
-        0 0 36px rgba(255,0,255,0.25);
-      transition: filter .15s ease, transform .06s ease, box-shadow .15s ease;
+        0 0 30px rgba(0,255,240,0.55),
+        0 0 44px rgba(255,0,255,0.35);
     }
 
-    .cta:hover { filter: brightness(1.1); }
-    .cta:active { transform: scale(0.97); }
-
     footer {
-      margin-top: 48px;
-      font-size: 0.9rem;
-      color: #888;
-      line-height: 1.7;
+      margin-top: 52px;
+      font-size: 1rem;
+      color: #999;
+      line-height: 1.8;
     }
 
     @media (max-width: 480px) {
-      h1 { font-size: 2.6rem; }
-      .subtitle { font-size: 1.35rem; }
-      .warning { font-size: 1rem; padding: 14px 18px; }
-      .card { padding: 26px 20px; }
-      .card h2 { font-size: 1.55rem; }
-      .card p { font-size: 1.2rem; }
-      .cta { font-size: 1.15rem; padding: 20px 22px; }
-      footer { font-size: 0.95rem; }
-    }
-      .subtitle { font-size: 1.1rem; }
-      .warning { font-size: 0.9rem; }
-      .card { padding: 24px 18px; }
-      .card h2 { font-size: 1.4rem; }
-      .card p { font-size: 1.05rem; }
-      .cta { font-size: 1.05rem; padding: 18px 20px; }
-    }
-      .subtitle { font-size: 0.95rem; }
-      .card { padding: 20px 16px; }
+      h1 { font-size: 2.9rem; }
+      .subtitle { font-size: 1.45rem; }
+      .card h2 { font-size: 1.7rem; }
+      .card p { font-size: 1.3rem; }
+      .cta { font-size: 1.25rem; }
+      footer { font-size: 1.05rem; }
     }
   </style>
 
@@ -281,4 +277,5 @@
     </footer>
   </main>
 </body>
-</html>
+  </html>
+  
