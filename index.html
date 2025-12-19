@@ -124,10 +124,21 @@
 
     footer {
       margin-top: 48px;
-      font-size:
+      font-size: 0.9rem;
+      color: #888;
+      line-height: 1.7;
+    }
 
     @media (max-width: 480px) {
-      h1 { font-size: 2.3rem; }
+      h1 { font-size: 2.6rem; }
+      .subtitle { font-size: 1.35rem; }
+      .warning { font-size: 1rem; padding: 14px 18px; }
+      .card { padding: 26px 20px; }
+      .card h2 { font-size: 1.55rem; }
+      .card p { font-size: 1.2rem; }
+      .cta { font-size: 1.15rem; padding: 20px 22px; }
+      footer { font-size: 0.95rem; }
+    }
       .subtitle { font-size: 1.1rem; }
       .warning { font-size: 0.9rem; }
       .card { padding: 24px 18px; }
@@ -146,16 +157,62 @@
   <!-- Random Hot Site Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const cards = Array.from(document.querySelectorAll('.card'));
+      const cards = Array.from(document.querySelectorAll('.card')).filter(c => c.querySelector('.cta'));
       if (!cards.length) return;
 
-      const randomCard = cards[Math.floor(Math.random() * cards.length)];
-      const link = randomCard.querySelector('a');
-      const title = randomCard.querySelector('h2')?.innerText || 'Hot Faucet';
+      const TODAY_KEY = new Date().toISOString().slice(0,10);
+      const STORAGE_KEY = `faucet_clicks_${TODAY_KEY}`;
+      const clicks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 
+      // Attach click tracking
+      cards.forEach(card => {
+        const title = card.querySelector('h2')?.innerText;
+        const link = card.querySelector('.cta');
+        if (!title || !link) return;
+
+        link.addEventListener('click', () => {
+          clicks[title] = (clicks[title] || 0) + 1;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(clicks));
+        });
+      });
+
+      // Determine trending faucet
+      let trendingTitle = 'Cointiply';
+      let maxClicks = 0;
+      let tie = false;
+
+      Object.entries(clicks).forEach(([title, count]) => {
+        if (count > maxClicks) {
+          maxClicks = count;
+          trendingTitle = title;
+          tie = false;
+        } else if (count === maxClicks && count > 0) {
+          tie = true;
+        }
+      });
+
+      if (tie || maxClicks === 0) trendingTitle = 'Cointiply';
+
+      // Find trending card
+      const trendingCard = cards.find(card => card.querySelector('h2')?.innerText === trendingTitle);
+      const fallbackCard = cards.find(card => card.querySelector('h2')?.innerText === 'Cointiply');
+      const selectedCard = trendingCard || fallbackCard;
+
+      // Populate Hot / Trending card
       const hot = document.getElementById('hot-site');
-      if (hot && link) {
-        hot.innerHTML = `🔥 Hot Faucet Right Now: <a href="${link.href}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">${title}</a>`;
+      const hotTitle = hot?.querySelector('h2');
+      const hotDesc = document.getElementById('hot-desc');
+      const hotLink = document.getElementById('hot-link');
+
+      if (hot && selectedCard && hotTitle && hotDesc && hotLink) {
+        const title = selectedCard.querySelector('h2').innerText;
+        const desc = selectedCard.querySelector('p').innerText;
+        const href = selectedCard.querySelector('.cta').href;
+
+        hotTitle.innerHTML = `🔥 Trending Today: ${title} <span style="font-size:0.75rem; color:var(--accent); margin-left:8px;">MOST CLICKED</span>`;
+        hotDesc.innerText = desc;
+        hotLink.href = href;
+        hotLink.innerText = `Sign Up for ${title}`;
       }
     });
   </script>
@@ -173,7 +230,11 @@
       <span style="color: var(--muted); font-size: 0.95rem;">All faucets below have been manually tested and are <strong>working & scam‑free</strong>.</span>
     </div>
 
-    <div id="hot-site" class="warning">🔥 HOT FAUCET — OPENS IN A NEW TAB</div>
+    <div id="hot-site" class="card" style="margin-bottom:28px; border-color: var(--danger); box-shadow: 0 0 35px rgba(255,56,96,0.35);">
+  <h2 style="color: var(--danger);">🔥 Hot Faucet Right Now</h2>
+  <p id="hot-desc">Loading a featured faucet...</p>
+  <a id="hot-link" class="cta" href="#" target="_blank" rel="noopener noreferrer">Open Hot Faucet</a>
+</div>
 
     <section class="links" id="faucet-list">
       <!-- CARD 1 -->
