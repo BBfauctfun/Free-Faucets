@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Cyberpunk Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -153,7 +154,7 @@
   <!-- Random Hot Site Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const cards = Array.from(document.querySelectorAll('.card')).filter(c => c.querySelector('.cta'));
+            const cards = Array.from(document.querySelectorAll('.links .card'));('.card')).filter(c => c.querySelector('.cta'));
       if (!cards.length) return;
 
       const TODAY_KEY = new Date().toISOString().slice(0,10);
@@ -277,5 +278,4 @@
     </footer>
   </main>
 </body>
-  </html>
-  
+</html>
