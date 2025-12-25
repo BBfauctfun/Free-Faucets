@@ -247,7 +247,7 @@
 
 <main>
   <div id="hot-site" class="badge hot-wave">
-  <span class="hot-text">Today's Hot Link:</span>
+  <span class="hot-text" id="hotText">Today's Hot Link:</span>
   <a id="hot-link" href="#" target="_blank" rel="noopener noreferrer" class="hot-link">FireFaucet</a>
 </div>
 
@@ -331,6 +331,20 @@
 </div>
 
 <script>
+  // Split hot text into animated spans
+  const hotTextEl = document.getElementById('hotText');
+  if (hotTextEl) {
+    const text = hotTextEl.textContent;
+    hotTextEl.innerHTML = '';
+    [...text].forEach((char, i) => {
+      const span = document.createElement('span');
+      span.textContent = char === ' ' ? ' ' : char;
+      span.style.animationDelay = `${i * 0.08}s`;
+      hotTextEl.appendChild(span);
+    });
+  }
+
+
   const todayKey = 'clicks-' + new Date().toISOString().slice(0,10);
   const clicks = JSON.parse(localStorage.getItem(todayKey) || '{}');
 
