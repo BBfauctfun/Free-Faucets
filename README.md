@@ -1,2 +1,2 @@
-# Free-Faucets
+# Safe and Free Faucets
 Free crypto faucets — safe &amp; scam-free
