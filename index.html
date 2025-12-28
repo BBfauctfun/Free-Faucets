@@ -201,9 +201,19 @@
     }
 
     .hot-text {
-      display: inline-block;
+      display: inline-flex;
       font-weight: 800;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .hot-text span {
+      display: inline-block;
+      animation-name: fireWave;
+      animation-duration: 2.2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      will-change: transform, color;
     }
 
     .hot-text span {
@@ -229,7 +239,13 @@
     .hot-text span:nth-child(16){ animation-delay: 1.5s; }
 
     @keyframes fireWave {
-      0% { color: #ff3b3b; transform: translateY(0); }
+      0%   { color: #ff3b3b; transform: translateY(0); }
+      20%  { color: #ff9f1c; transform: translateY(-6px); }
+      40%  { color: #fff1a8; transform: translateY(0); }
+      60%  { color: #ff6a00; transform: translateY(4px); }
+      80%  { color: #ff9f1c; transform: translateY(0); }
+      100% { color: #ff3b3b; transform: translateY(0); }
+    }
       25% { color: #ff9f1c; transform: translateY(-4px); }
       50% { color: #fff1a8; transform: translateY(0); }
       75% { color: #ff6a00; transform: translateY(2px); }
@@ -328,6 +344,7 @@
 <div id="sticky-cta">
   <button id="cta-close">✕</button>
   <div class="cta-inner">
+      <div class="cta-headline">🔥 Trending Faucet</div>
     <div class="cta-label">🔥 Trending Today</div>
     <div class="cta-title" id="ctaTitle">Cointiply</div>
     <p class="cta-text">🔥 Most-clicked faucet today — ranked by real user activity</p>Free • Fun • Easy • 100% Faucet-Based</p>
@@ -340,6 +357,17 @@
   // Ensure fire wave animation always initializes
   document.addEventListener('DOMContentLoaded', () => {
     const hotTextEl = document.getElementById('hotText');
+    if (hotTextEl) {
+      const text = "Today's Hot Link:";
+      hotTextEl.innerHTML = '';
+      [...text].forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? ' ' : char;
+        span.style.animationDelay = `${i * 0.1}s`;
+        hotTextEl.appendChild(span);
+      });
+    }
+  });
     if (hotTextEl && hotTextEl.children.length === 0) {
       const text = "Today's Hot Link:";
       hotTextEl.innerHTML = '';
