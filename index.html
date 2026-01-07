@@ -297,20 +297,25 @@
     });
   });
 
-  // Pick a random faucet on each page load
+  // Pick a random faucet on each page load (single source of truth)
 const cards = Array.from(document.querySelectorAll('.card'));
 const randomCard = cards[Math.floor(Math.random() * cards.length)];
-const winner = randomCard ? randomCard.dataset.name : 'FireFaucet';
 const winnerCard = randomCard || document.querySelector('.card[data-name="FireFaucet"]');
+const winner = winnerCard.dataset.name;('.card[data-name="FireFaucet"]');
   const winner = sorted.length ? sorted[0][0] : 'FireFaucet';
 
   const winnerCard = document.querySelector(`.card[data-name="${winner}"]`) || document.querySelector('.card[data-name="FireFaucet"]');(`.card[data-name="${winner}"]`) || document.querySelector('.card[data-name="Cointiply"]');
 
   document.getElementById('ctaTitle').textContent = winner;
+document.getElementById('ctaLink').href = winnerCard.querySelector('a').href;
+document.getElementById('ctaLink').textContent = 'Sign Up for ' + winner;
   document.getElementById('ctaLink').href = winnerCard.querySelector('a').href;
   document.getElementById('ctaLink').textContent = 'Sign Up for ' + winner;
 
   const hotSite = document.getElementById('hot-site');
+if (hotSite && winnerCard) {
+  hotSite.innerHTML = `🔥 Hot Faucet Today: <a href="${winnerCard.querySelector('a').href}" target="_blank" style="color: var(--neon); text-decoration: none;">${winner}</a>`;
+}
   if (hotSite && winnerCard) {
     hotSite.innerHTML = `🔥 Hot Faucet Today: <a href="${winnerCard.querySelector('a').href}" target="_blank" style="color: var(--neon); text-decoration: none;">${winner}</a>`;
   }
@@ -318,11 +323,12 @@ const winnerCard = randomCard || document.querySelector('.card[data-name="FireFa
   const cta = document.getElementById('sticky-cta');
   const closeBtn = document.getElementById('cta-close');
 
-  setTimeout(() => cta.classList.add('pulse'), 5000);
+  // Re-enable CTA glow after delay
+setTimeout(() => cta.classList.add('pulse'), 5000);
 
   closeBtn.onclick = () => {
-    cta.classList.add('hidden');
-  };
+  cta.classList.add('hidden');
+};
 
   // CTA resets on page reload (no persistence)
 
