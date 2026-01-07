@@ -297,7 +297,11 @@
     });
   });
 
-  const sorted = Object.entries(clicks).sort((a,b)=>b[1]-a[1]);
+  // Pick a random faucet on each page load
+const cards = Array.from(document.querySelectorAll('.card'));
+const randomCard = cards[Math.floor(Math.random() * cards.length)];
+const winner = randomCard ? randomCard.dataset.name : 'FireFaucet';
+const winnerCard = randomCard || document.querySelector('.card[data-name="FireFaucet"]');
   const winner = sorted.length ? sorted[0][0] : 'FireFaucet';
 
   const winnerCard = document.querySelector(`.card[data-name="${winner}"]`) || document.querySelector('.card[data-name="FireFaucet"]');(`.card[data-name="${winner}"]`) || document.querySelector('.card[data-name="Cointiply"]');
