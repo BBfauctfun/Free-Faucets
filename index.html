@@ -291,58 +291,47 @@
 </div>
 
 <script>
-  const todayKey = 'clicks-' + new Date().toISOString().slice(0,10);
-  const clicks = JSON.parse(localStorage.getItem(todayKey) || '{}');
+  /* =============================
+     STABLE RANDOM HOT LINK + CTA
+     ============================= */
 
-  document.querySelectorAll('.card').forEach(card => {
-    const name = card.dataset.name;
-    const link = card.querySelector('a');
-    link.addEventListener('click', () => {
-      clicks[name] = (clicks[name] || 0) + 1;
-      localStorage.setItem(todayKey, JSON.stringify(clicks));
-    });
-  });
+  const cards = Array.from(document.querySelectorAll('.card'));
 
-  // Pick a random faucet on each page load (single source of truth)
-const cards = Array.from(document.querySelectorAll('.card'));
-const randomCard = cards[Math.floor(Math.random() * cards.length)];
-const winnerCard = randomCard || document.querySelector('.card[data-name="FireFaucet"]');
-const winner = winnerCard.dataset.name;('.card[data-name="FireFaucet"]');
-  const winner = sorted.length ? sorted[0][0] : 'FireFaucet';
+  // Pick ONE random card per page load
+  const chosenCard = cards[Math.floor(Math.random() * cards.length)];
+  const chosenName = chosenCard.dataset.name;
+  const chosenLink = chosenCard.querySelector('a');
 
-  const winnerCard = document.querySelector(`.card[data-name="${winner}"]`) || document.querySelector('.card[data-name="FireFaucet"]');(`.card[data-name="${winner}"]`) || document.querySelector('.card[data-name="Cointiply"]');
-
-  document.getElementById('ctaTitle').textContent = winner;
-document.getElementById('ctaLink').href = winnerCard.querySelector('a').href;
-document.getElementById('ctaLink').textContent = 'Sign Up for ' + winner;
-  document.getElementById('ctaLink').href = winnerCard.querySelector('a').href;
-  document.getElementById('ctaLink').textContent = 'Sign Up for ' + winner;
-
+  /* ---- HOT LINK (TOP BADGE) ---- */
   const hotSite = document.getElementById('hot-site');
-if (hotSite && winnerCard) {
-  hotSite.innerHTML = `🔥 Hot Faucet Today: <a href="${winnerCard.querySelector('a').href}" target="_blank" style="color: var(--neon); text-decoration: none;">${winner}</a>`;
-}
-  if (hotSite && winnerCard) {
-    hotSite.innerHTML = `🔥 Hot Faucet Today: <a href="${winnerCard.querySelector('a').href}" target="_blank" style="color: var(--neon); text-decoration: none;">${winner}</a>`;
+  if (hotSite && chosenLink) {
+    hotSite.innerHTML = `🔥 Hot Faucet Today: <a href="${chosenLink.href}" target="_blank" style="color: var(--neon); text-decoration: underline;">${chosenName}</a>`;
   }
 
+  /* ---- STICKY CTA ---- */
   const cta = document.getElementById('sticky-cta');
+  const ctaTitle = document.getElementById('ctaTitle');
+  const ctaLink = document.getElementById('ctaLink');
   const closeBtn = document.getElementById('cta-close');
 
-  // Re-enable CTA glow after delay
-setTimeout(() => cta.classList.add('pulse'), 5000);
+  ctaTitle.textContent = chosenName;
+  ctaLink.href = chosenLink.href;
+  ctaLink.textContent = 'Sign Up for ' + chosenName;
 
-  closeBtn.onclick = () => {
-  cta.classList.add('hidden');
-};
+  // Glow after 5 seconds
+  setTimeout(() => cta.classList.add('pulse'), 5000);
 
-  // CTA resets on page reload (no persistence)
+  // Close button works and stays closed until reload
+  closeBtn.addEventListener('click', () => {
+    cta.classList.add('hidden');
+  });
 
-  // CTA stays static; no scroll-based hide/show
-('scroll', () => {
-    if (window.scrollY > lastScroll + 40) cta.classList.remove('hidden');
-    if (window.scrollY < lastScroll - 40) cta.classList.add('hidden');
-    lastScroll = window.scrollY;
+  /* ---- CLICK TRACKING ---- */
+  cards.forEach(card => {
+    const link = card.querySelector('a');
+    link.addEventListener('click', () => {
+      // GoatCounter auto-tracks outbound clicks
+    });
   });
 </script>
 
