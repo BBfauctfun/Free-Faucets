@@ -285,59 +285,89 @@
 </div>
 
 <script>
-  const todayKey = 'clicks-' + new Date().toISOString().slice(0,10);
-  const clicks = JSON.parse(localStorage.getItem(todayKey) || '{}');
+document.addEventListener("DOMContentLoaded", () => {
 
-  document.querySelectorAll('.card').forEach(card => {
-    const name = card.dataset.name;
-    const link = card.querySelector('a');
-    link.addEventListener('click', () => {
-      clicks[name] = (clicks[name] || 0) + 1;
-      localStorage.setItem(todayKey, JSON.stringify(clicks));
-    });
-  });
+  /* =========================
+     FAUCET DATA (ONE SOURCE)
+     ========================= */
+  const faucets = [
+    {
+      name: "FireFaucet",
+      url: "https://firefaucet.win/ref/521433",
+      desc: "Auto-claim crypto while you chill. One of the most popular faucets online."
+    },
+    {
+      name: "Cointiply",
+      url: "https://cointiply.com/r/jMP74",
+      desc: "Surveys, games, and faucets rolled into one trusted platform."
+    },
+    {
+      name: "SimpleBits",
+      url: "https://simplebits.io/ref/U4w4gu_fTQNz",
+      desc: "Clean, fast faucet payouts with no nonsense."
+    },
+    {
+      name: "Dutchy Autofaucet",
+      url: "https://autofaucet.dutchycorp.space/?r=brecken.baker@gmail.com",
+      desc: "Claim from multiple coins automatically over time."
+    },
+    {
+      name: "FreeBTCcoin",
+      url: "https://freebtcco.in?ref=hFnVzLNqaJ",
+      desc: "Classic BTC faucet with frequent rolls."
+    }
+  ];
 
-  // Pick a random faucet on each page load (single source of truth)
-const cards = Array.from(document.querySelectorAll('.card'));
-const randomCard = cards[Math.floor(Math.random() * cards.length)];
-const winnerCard = randomCard || document.querySelector('.card[data-name="FireFaucet"]');
-const winner = winnerCard.dataset.name;('.card[data-name="FireFaucet"]');
-  const winner = sorted.length ? sorted[0][0] : 'FireFaucet';
+  /* =========================
+     PICK ONE RANDOM FAUCET
+     ========================= */
+  const featured = faucets[Math.floor(Math.random() * faucets.length)];
 
-  const winnerCard = document.querySelector(`.card[data-name="${winner}"]`) || document.querySelector('.card[data-name="FireFaucet"]');(`.card[data-name="${winner}"]`) || document.querySelector('.card[data-name="Cointiply"]');
+  /* =========================
+     TOP HOT LINK
+     ========================= */
+  const hotName = document.getElementById("hot-site-name");
+  const hotLink = document.getElementById("hot-site-link");
 
-  document.getElementById('ctaTitle').textContent = winner;
-document.getElementById('ctaLink').href = winnerCard.querySelector('a').href;
-document.getElementById('ctaLink').textContent = 'Sign Up for ' + winner;
-  document.getElementById('ctaLink').href = winnerCard.querySelector('a').href;
-  document.getElementById('ctaLink').textContent = 'Sign Up for ' + winner;
-
-  const hotSite = document.getElementById('hot-site');
-if (hotSite && winnerCard) {
-  hotSite.innerHTML = `🔥 Hot Faucet Today: <a href="${winnerCard.querySelector('a').href}" target="_blank" style="color: var(--neon); text-decoration: none;">${winner}</a>`;
-}
-  if (hotSite && winnerCard) {
-    hotSite.innerHTML = `🔥 Hot Faucet Today: <a href="${winnerCard.querySelector('a').href}" target="_blank" style="color: var(--neon); text-decoration: none;">${winner}</a>`;
+  if (hotName && hotLink) {
+    hotName.textContent = featured.name;
+    hotLink.href = featured.url;
   }
 
-  const cta = document.getElementById('sticky-cta');
-  const closeBtn = document.getElementById('cta-close');
+  /* =========================
+     CTA CARD
+     ========================= */
+  const cta = document.getElementById("cta");
+  const ctaTitle = document.getElementById("cta-title");
+  const ctaDesc = document.getElementById("cta-desc");
+  const ctaBtn = document.getElementById("cta-button");
+  const ctaClose = document.getElementById("cta-close");
 
-  // Re-enable CTA glow after delay
-setTimeout(() => cta.classList.add('pulse'), 5000);
+  if (cta && ctaTitle && ctaDesc && ctaBtn) {
+    ctaTitle.textContent = featured.name;
+    ctaDesc.textContent = featured.desc;
+    ctaBtn.href = featured.url;
+  }
 
-  closeBtn.onclick = () => {
-  cta.classList.add('hidden');
-};
+  /* =========================
+     CLOSE BUTTON (WORKING)
+     ========================= */
+  if (ctaClose && cta) {
+    ctaClose.addEventListener("click", () => {
+      cta.style.display = "none";
+    });
+  }
 
-  // CTA resets on page reload (no persistence)
+  /* =========================
+     GLOW AFTER 5 SECONDS
+     ========================= */
+  if (cta) {
+    setTimeout(() => {
+      cta.classList.add("cta-glow");
+    }, 5000);
+  }
 
-  // CTA stays static; no scroll-based hide/show
-('scroll', () => {
-    if (window.scrollY > lastScroll + 40) cta.classList.remove('hidden');
-    if (window.scrollY < lastScroll - 40) cta.classList.add('hidden');
-    lastScroll = window.scrollY;
-  });
+});
 </script>
 
 </body>
