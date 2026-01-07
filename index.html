@@ -197,7 +197,12 @@
 <body>
 
 <main>
-  <div id="hot-site" class="badge">🔥 Hot Faucet Today: FireFaucet</div>
+  <div id="hot-site" class="badge">
+  🔥 Hot Faucet Today:
+  <a id="hot-site-link" href="#" target="_blank" style="color: var(--neon); text-decoration: none;">
+    <span id="hot-site-name">Loading…</span>
+  </a>
+</div>
 
   <div class="badge">FREE • FUN • EASY • TESTED & SCAM-FREE</div>
 
@@ -252,6 +257,7 @@
       <p>Claim ETH through a simple, no-risk faucet system.</p>
       <a class="cta" data-goatcounter-click="click-freeethereum" href="https://freeethereum.com/?ref=428210" target="_blank">Sign Up for FreeEthereum</a>
     </div>
+    
       <div class="card" data-name="SimpleBits">
       <h2>SimpleBits</h2>
       <p>A clean, no-frills crypto faucet focused on simplicity and reliability. Easy claims, free rewards, and beginner-friendly.</p>
@@ -287,83 +293,47 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================
-     FAUCET DATA (ONE SOURCE)
-     ========================= */
-  const faucets = [
-    {
-      name: "FireFaucet",
-      url: "https://firefaucet.win/ref/521433",
-      desc: "Auto-claim crypto while you chill. One of the most popular faucets online."
-    },
-    {
-      name: "Cointiply",
-      url: "https://cointiply.com/r/jMP74",
-      desc: "Surveys, games, and faucets rolled into one trusted platform."
-    },
-    {
-      name: "SimpleBits",
-      url: "https://simplebits.io/ref/U4w4gu_fTQNz",
-      desc: "Clean, fast faucet payouts with no nonsense."
-    },
-    {
-      name: "Dutchy Autofaucet",
-      url: "https://autofaucet.dutchycorp.space/?r=brecken.baker@gmail.com",
-      desc: "Claim from multiple coins automatically over time."
-    },
-    {
-      name: "FreeBTCcoin",
-      url: "https://freebtcco.in?ref=hFnVzLNqaJ",
-      desc: "Classic BTC faucet with frequent rolls."
-    }
-  ];
+  /* ===== ALL CARDS ===== */
+  const cards = Array.from(document.querySelectorAll(".card"));
+  if (!cards.length) return;
 
-  /* =========================
-     PICK ONE RANDOM FAUCET
-     ========================= */
-  const featured = faucets[Math.floor(Math.random() * faucets.length)];
+  /* ===== PICK RANDOM CARD ===== */
+  const chosenCard = cards[Math.floor(Math.random() * cards.length)];
+  const name = chosenCard.dataset.name;
+  const link = chosenCard.querySelector("a").href;
 
-  /* =========================
-     TOP HOT LINK
-     ========================= */
+  /* ===== TOP HOT LINK ===== */
   const hotName = document.getElementById("hot-site-name");
   const hotLink = document.getElementById("hot-site-link");
 
   if (hotName && hotLink) {
-    hotName.textContent = featured.name;
-    hotLink.href = featured.url;
+    hotName.textContent = name;
+    hotLink.href = link;
   }
 
-  /* =========================
-     CTA CARD
-     ========================= */
-  const cta = document.getElementById("cta");
-  const ctaTitle = document.getElementById("cta-title");
-  const ctaDesc = document.getElementById("cta-desc");
-  const ctaBtn = document.getElementById("cta-button");
-  const ctaClose = document.getElementById("cta-close");
+  /* ===== CTA ===== */
+  const cta = document.getElementById("sticky-cta");
+  const ctaTitle = document.getElementById("ctaTitle");
+  const ctaLink = document.getElementById("ctaLink");
+  const closeBtn = document.getElementById("cta-close");
 
-  if (cta && ctaTitle && ctaDesc && ctaBtn) {
-    ctaTitle.textContent = featured.name;
-    ctaDesc.textContent = featured.desc;
-    ctaBtn.href = featured.url;
+  if (ctaTitle && ctaLink) {
+    ctaTitle.textContent = name;
+    ctaLink.href = link;
+    ctaLink.textContent = "Sign Up for " + name;
   }
 
-  /* =========================
-     CLOSE BUTTON (WORKING)
-     ========================= */
-  if (ctaClose && cta) {
-    ctaClose.addEventListener("click", () => {
-      cta.style.display = "none";
+  /* ===== CLOSE BUTTON ===== */
+  if (closeBtn && cta) {
+    closeBtn.addEventListener("click", () => {
+      cta.classList.add("hidden");
     });
   }
 
-  /* =========================
-     GLOW AFTER 5 SECONDS
-     ========================= */
+  /* ===== GLOW AFTER 5s ===== */
   if (cta) {
     setTimeout(() => {
-      cta.classList.add("cta-glow");
+      cta.classList.add("pulse");
     }, 5000);
   }
 
