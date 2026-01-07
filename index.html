@@ -197,12 +197,7 @@
 <body>
 
 <main>
-  <div id="hot-site" class="badge">
-  🔥 Hot Faucet Today:
-  <a id="hot-site-link" href="#" target="_blank" style="color: var(--neon); text-decoration: none;">
-    <span id="hot-site-name">Loading…</span>
-  </a>
-</div>
+  <div id="hot-site" class="badge">🔥 Hot Faucet Today: FireFaucet</div>
 
   <div class="badge">FREE • FUN • EASY • TESTED & SCAM-FREE</div>
 
@@ -257,7 +252,6 @@
       <p>Claim ETH through a simple, no-risk faucet system.</p>
       <a class="cta" data-goatcounter-click="click-freeethereum" href="https://freeethereum.com/?ref=428210" target="_blank">Sign Up for FreeEthereum</a>
     </div>
-    
       <div class="card" data-name="SimpleBits">
       <h2>SimpleBits</h2>
       <p>A clean, no-frills crypto faucet focused on simplicity and reliability. Easy claims, free rewards, and beginner-friendly.</p>
@@ -268,6 +262,12 @@
       <h2>FreeBTCcoin</h2>
       <p>Earn Bitcoin through a classic faucet with games, rewards, and long-running payouts.</p>
       <a class="cta" data-goatcounter-click="click-freebtccoin" href="https://freebtcco.in?ref=hFnVzLNqaJ" target="_blank">Sign Up for FreeBTCcoin</a>
+    </div>
+
+      <div class="card" data-name="FreeDogecoin">
+      <h2>Free-Dogecoin</h2>
+      <p>Classic Dogecoin faucet with simple claims and long-running payouts.</p>
+      <a class="cta" data-goatcounter-click="click-free-dogecoin" href="https://free-doge.com/?ref=330277" target="_blank">Sign Up for Free-Dogecoin</a>
     </div>
 
   </section>
@@ -291,53 +291,59 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+  const todayKey = 'clicks-' + new Date().toISOString().slice(0,10);
+  const clicks = JSON.parse(localStorage.getItem(todayKey) || '{}');
 
-  /* ===== ALL CARDS ===== */
-  const cards = Array.from(document.querySelectorAll(".card"));
-  if (!cards.length) return;
-
-  /* ===== PICK RANDOM CARD ===== */
-  const chosenCard = cards[Math.floor(Math.random() * cards.length)];
-  const name = chosenCard.dataset.name;
-  const link = chosenCard.querySelector("a").href;
-
-  /* ===== TOP HOT LINK ===== */
-  const hotName = document.getElementById("hot-site-name");
-  const hotLink = document.getElementById("hot-site-link");
-
-  if (hotName && hotLink) {
-    hotName.textContent = name;
-    hotLink.href = link;
-  }
-
-  /* ===== CTA ===== */
-  const cta = document.getElementById("sticky-cta");
-  const ctaTitle = document.getElementById("ctaTitle");
-  const ctaLink = document.getElementById("ctaLink");
-  const closeBtn = document.getElementById("cta-close");
-
-  if (ctaTitle && ctaLink) {
-    ctaTitle.textContent = name;
-    ctaLink.href = link;
-    ctaLink.textContent = "Sign Up for " + name;
-  }
-
-  /* ===== CLOSE BUTTON ===== */
-  if (closeBtn && cta) {
-    closeBtn.addEventListener("click", () => {
-      cta.classList.add("hidden");
+  document.querySelectorAll('.card').forEach(card => {
+    const name = card.dataset.name;
+    const link = card.querySelector('a');
+    link.addEventListener('click', () => {
+      clicks[name] = (clicks[name] || 0) + 1;
+      localStorage.setItem(todayKey, JSON.stringify(clicks));
     });
+  });
+
+  // Pick a random faucet on each page load (single source of truth)
+const cards = Array.from(document.querySelectorAll('.card'));
+const randomCard = cards[Math.floor(Math.random() * cards.length)];
+const winnerCard = randomCard || document.querySelector('.card[data-name="FireFaucet"]');
+const winner = winnerCard.dataset.name;('.card[data-name="FireFaucet"]');
+  const winner = sorted.length ? sorted[0][0] : 'FireFaucet';
+
+  const winnerCard = document.querySelector(`.card[data-name="${winner}"]`) || document.querySelector('.card[data-name="FireFaucet"]');(`.card[data-name="${winner}"]`) || document.querySelector('.card[data-name="Cointiply"]');
+
+  document.getElementById('ctaTitle').textContent = winner;
+document.getElementById('ctaLink').href = winnerCard.querySelector('a').href;
+document.getElementById('ctaLink').textContent = 'Sign Up for ' + winner;
+  document.getElementById('ctaLink').href = winnerCard.querySelector('a').href;
+  document.getElementById('ctaLink').textContent = 'Sign Up for ' + winner;
+
+  const hotSite = document.getElementById('hot-site');
+if (hotSite && winnerCard) {
+  hotSite.innerHTML = `🔥 Hot Faucet Today: <a href="${winnerCard.querySelector('a').href}" target="_blank" style="color: var(--neon); text-decoration: none;">${winner}</a>`;
+}
+  if (hotSite && winnerCard) {
+    hotSite.innerHTML = `🔥 Hot Faucet Today: <a href="${winnerCard.querySelector('a').href}" target="_blank" style="color: var(--neon); text-decoration: none;">${winner}</a>`;
   }
 
-  /* ===== GLOW AFTER 5s ===== */
-  if (cta) {
-    setTimeout(() => {
-      cta.classList.add("pulse");
-    }, 5000);
-  }
+  const cta = document.getElementById('sticky-cta');
+  const closeBtn = document.getElementById('cta-close');
 
-});
+  // Re-enable CTA glow after delay
+setTimeout(() => cta.classList.add('pulse'), 5000);
+
+  closeBtn.onclick = () => {
+  cta.classList.add('hidden');
+};
+
+  // CTA resets on page reload (no persistence)
+
+  // CTA stays static; no scroll-based hide/show
+('scroll', () => {
+    if (window.scrollY > lastScroll + 40) cta.classList.remove('hidden');
+    if (window.scrollY < lastScroll - 40) cta.classList.add('hidden');
+    lastScroll = window.scrollY;
+  });
 </script>
 
 </body>
