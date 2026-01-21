@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Crypto Faucets</title>
+
+  <!-- Cyberpunk Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- GoatCounter -->
+  <script data-goatcounter="https://bbfaucetfun.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <style>
+    :root {
+      --neon: #00f5ff;
+      --pink: #b400ff;
+      --bg: #05070b;
+      --card: #0b0f18;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #0c1222, #02040a 70%);
+      color: #cfefff;
+      padding-bottom: 200px; /* space for sticky CTA */
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+      text-align: center;
+    }
+
+    .badge {
+      border: 1px solid var(--neon);
+      color: var(--neon);
+      padding: 10px 14px;
+      display: inline-block;
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6.5vw, 3rem);
+      margin: 12px 0 8px;
+      text-shadow: 0 0 18px rgba(0,245,255,0.45);
+    }
+
+    .sub {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 28px;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #0d1324, #070b14);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 0 0 1px rgba(0,245,255,0.15), 0 12px 40px rgba(0,0,0,0.6);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 16px;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--neon), var(--pink));
+      color: #000;
+      font-weight: 800;
+      text-decoration: none;
+      transition: box-shadow .2s ease, transform .15s ease;
+    }
+
+    .cta:hover {
+      box-shadow: 0 0 25px rgba(0,245,255,0.8);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    /* ===== STICKY CTA ===== */
+    #sticky-cta {
+      position: fixed;
+      left: 0;
+      bottom: env(safe-area-inset-bottom, 0);
+      width: 100%;
+      background: linear-gradient(135deg, var(--neon), var(--pink));
+      padding: 16px 14px 20px;
+      z-index: 9999;
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+      transition: transform .3s ease, opacity .3s ease;
+    }
+
+    #sticky-cta.hidden {
+      transform: translateY(120%);
+      opacity: 0;
+    }
+
+    #sticky-cta.pulse {
+      animation: pulseGlow 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 -10px 30px rgba(0,245,255,0.3); }
+      50% { box-shadow: 0 -10px 60px rgba(0,245,255,0.9); }
+      100% { box-shadow: 0 -10px 30px rgba(0,245,255,0.3); }
+    }
+
+    .cta-inner {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+      color: #000;
+    }
+
+    .cta-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .cta-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 4px 0;
+    }
+
+    .cta-text {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .cta-button {
+      display: block;
+      background: #000;
+      color: var(--neon);
+      padding: 14px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: box-shadow .2s ease, transform .15s ease;
+    }
+
+    .cta-button:hover {
+      box-shadow: 0 0 30px rgba(0,245,255,0.9);
+      transform: scale(1.03);
+    }
+
+    .cta-microcopy {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.7rem;
+      opacity: 0.85;
+    }
+
+    #cta-close {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+<main>
+  <div id="hot-site" class="badge">🔥 Hot Faucet Today: FireFaucet</div>
+
+  <div class="badge">FREE • FUN • EASY • TESTED & SCAM-FREE</div>
+
+  <h1>FREE CRYPTO FAUCETS</h1>
+  <div class="sub">Every link opens in a new tab so you can come back and stack more faucets.</div>
+
+  <section class="links" id="faucetList">
+
+    <!-- 🔥 HIGH CONVERTERS FIRST -->
+
+    <div class="card" data-name="Cointiply">
+      <h2>Cointiply</h2>
+      <p>One of the most trusted faucets. Multiple ways to earn. Zero cost. Proven payouts.</p>
+      <a class="cta" data-goatcounter-click="click-cointiply" href="https://cointiply.com/r/jMP74" target="_blank">Sign Up for Cointiply</a>
+    </div>
+
+    <div class="card" data-name="FireFaucet">
+      <h2>FireFaucet</h2>
+      <p>Automated faucet that runs after simple tasks. Legit, hands-off, addictive.</p>
+      <a class="cta" data-goatcounter-click="click-firefaucet" href="https://firefaucet.win/ref/521433" target="_blank">Sign Up for FireFaucet</a>
+    </div>
+
+    <div class="card" data-name="Dutchy">
+      <h2>Dutchy AutoFaucet</h2>
+      <p>Claim crypto automatically from many faucets. Long-running and trusted.</p>
+      <a class="cta" data-goatcounter-click="click-dutchy" href="https://autofaucet.dutchycorp.space/?r=brecken.baker@gmail.com" target="_blank">Sign Up for Dutchy</a>
+    </div>
+
+    <div class="card" data-name="SimpleBits">
+      <h2>SimpleBits</h2>
+      <p>A clean, no-frills crypto faucet focused on simplicity and reliability. Easy claims, free rewards, and beginner-friendly.</p>
+      <a class="cta" data-goatcounter-click="click-simplebits" href="https://simplebits.io/ref/U4w4gu_fTQNz" target="_blank">Sign Up for SimpleBits</a>
+    </div>
+
+    <!-- 💰 MAJOR COINS -->
+
+    <div class="card" data-name="FreeBitcoin">
+      <h2>FreeBitcoin.io</h2>
+      <p>Earn Bitcoin with faucet-style rolls and offers.</p>
+      <a class="cta" data-goatcounter-click="click-freebitcoin" href="https://freebitcoin.io/?ref=796745" target="_blank">Sign Up for FreeBitcoin</a>
+    </div>
+
+    <div class="card" data-name="FreeBTCcoin">
+      <h2>FreeBTCcoin</h2>
+      <p>Earn Bitcoin through a classic faucet with games, rewards, and long-running payouts.</p>
+      <a class="cta" data-goatcounter-click="click-freebtccoin" href="https://freebtcco.in?ref=hFnVzLNqaJ" target="_blank">Sign Up for FreeBTCcoin</a>
+    </div>
+
+    <div class="card" data-name="FreeLitecoin">
+      <h2>Free-Litecoin</h2>
+      <p>Hourly Litecoin rolls with jackpots and bonuses. A classic.</p>
+      <a class="cta" data-goatcounter-click="click-free-litecoin" href="https://free-litecoin.com/login?referer=1208101" target="_blank">Sign Up for Free-Litecoin</a>
+    </div>
+
+    <div class="card" data-name="FreeLTC">
+      <h2>Free-LTC</h2>
+      <p>Earn Litecoin through simple rolls and bonuses. Straightforward and legit.</p>
+      <a class="cta" data-goatcounter-click="click-free-ltc" href="https://free-ltc.com/?ref=276196" target="_blank">Sign Up for Free-LTC</a>
+    </div>
+
+    <div class="card" data-name="FreeEthereum">
+      <h2>FreeEthereum</h2>
+      <p>Claim ETH through a simple, no-risk faucet system.</p>
+      <a class="cta" data-goatcounter-click="click-freeethereum" href="https://freeethereum.com/?ref=428210" target="_blank">Sign Up for FreeEthereum</a>
+    </div>
+
+    <div class="card" data-name="FreeDogecoin">
+      <h2>Free-Dogecoin</h2>
+      <p>Classic Dogecoin faucet with simple claims and long-running payouts.</p>
+      <a class="cta" data-goatcounter-click="click-free-dogecoin" href="https://free-doge.com/?ref=330277" target="_blank">Sign Up for Free-Dogecoin</a>
+    </div>
+
+    <!-- 🧪 ALT / NICHE FAUCETS -->
+
+    <div class="card" data-name="Litepick">
+      <h2>Litepick</h2>
+      <p>Clean, simple faucet-style rewards. Easy, free, and safe way to earn Litecoin.</p>
+      <a class="cta" data-goatcounter-click="click-litepick" href="https://litepick.io/?ref=GrrlPlant" target="_blank">Sign Up for Litepick</a>
+    </div>
+
+    <div class="card" data-name="FreeTron">
+      <h2>Free-Tron</h2>
+      <p>Claim TRX through quick faucets and bonuses. Free and easy to start.</p>
+      <a class="cta" data-goatcounter-click="click-free-tron" href="https://free-tron.com/?ref=517863" target="_blank">Sign Up for Free-Tron</a>
+    </div>
+
+    <div class="card" data-name="FreeXRP">
+      <h2>Free-XRP</h2>
+      <p>Earn small amounts of XRP via hourly claims and tasks.</p>
+      <a class="cta" data-goatcounter-click="click-free-xrp" href="https://coinfaucet.io/?ref=964239" target="_blank">Sign Up for Free-XRP</a>
+    </div>
+
+    <div class="card" data-name="FreeBinanceCoin">
+      <h2>Free-BinanceCoin</h2>
+      <p>Collect BNB rewards from faucet claims and promotions.</p>
+      <a class="cta" data-goatcounter-click="click-free-bnb" href="https://freebinancecoin.com/?ref=412715" target="_blank">Sign Up for Free-BinanceCoin</a>
+    </div>
+
+    <div class="card" data-name="FreeShiba">
+      <h2>Free Shiba Inu</h2>
+      <p>Simple Shiba claims and bonuses for quick payouts.</p>
+      <a class="cta" data-goatcounter-click="click-free-shiba" href="https://freeshibainu.com/?ref=202923" target="_blank">Sign Up for Free Shiba</a>
+    </div>
+
+    <div class="card" data-name="FreePancake">
+      <h2>Free Pancake Swap</h2>
+      <p>Earn CAKE tokens through faucets and simple tasks.</p>
+      <a class="cta" data-goatcounter-click="click-free-pancake" href="https://freepancake.com/?ref=62267" target="_blank">Sign Up for Free Pancake</a>
+    </div>
+
+    <div class="card" data-name="FreeMatic">
+      <h2>Free Matic</h2>
+      <p>Claim MATIC tokens with quick, low-effort faucets and bonuses.</p>
+      <a class="cta" data-goatcounter-click="click-free-matic" href="https://freematic.com/?ref=97547" target="_blank">Sign Up for Free Matic</a>
+    </div>
+
+    <div class="card" data-name="FreeBitTorrent">
+      <h2>Free BitTorrent</h2>
+      <p>Earn BTT through faucet claims and activities.</p>
+      <a class="cta" data-goatcounter-click="click-free-btt" href="https://freebittorrent.com/?ref=32076" target="_blank">Sign Up for Free BitTorrent</a>
+    </div>
+
+    <div class="card" data-name="Tonpick">
+      <h2>Tonpick</h2>
+      <p>TON-based faucet with simple claims and quick rewards. Easy to get started.</p>
+      <a class="cta" data-goatcounter-click="click-tonpick" href="https://tonpick.game/?ref=Vixit79" target="_blank">Sign Up for Tonpick</a>
+    </div>
+
+    <div class="card" data-name="Solpick">
+      <h2>Solpick</h2>
+      <p>Solana faucet offering fast claims and lightweight tasks for free SOL rewards.</p>
+      <a class="cta" data-goatcounter-click="click-solpick" href="https://solpick.io/?ref=Vixit79" target="_blank">Sign Up for Solpick</a>
+    </div>
+
+    <div class="card" data-name="Tronpick">
+      <h2>Tronpick</h2>
+      <p>TRON-focused faucet with quick claims and bonus opportunities.</p>
+      <a class="cta" data-goatcounter-click="click-tronpick" href="https://tronpick.io/?ref=GrrlPlant" target="_blank">Sign Up for Tronpick</a>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>Links open in new tabs • Faucets tested for functionality • Not financial advice</p>
+    <p>Analytics by GoatCounter • Hosted on GitHub Pages</p>
+  </footer>
+</main>
+
+<!-- Sticky CTA -->
+<div id="sticky-cta">
+  <button id="cta-close">✕</button>
+  <div class="cta-inner">
+    <div class="cta-label">🔥 Trending Today</div>
+    <div class="cta-title" id="ctaTitle">Cointiply</div>
+    <p class="cta-text">Free • Fun • Easy • 100% Faucet-Based</p>
+    <a id="ctaLink" class="cta-button" href="https://cointiply.com/r/jMP74" target="_blank">Sign Up for Cointiply</a>
+    <small class="cta-microcopy">Opens in a new tab • No signup cost • Scam-free</small>
+  </div>
+</div>
+
+<script>
+  /* =============================
+     STABLE RANDOM HOT LINK + CTA
+     ============================= */
+
+  const cards = Array.from(document.querySelectorAll('.card'));
+
+  // Pick ONE random card per page load
+  const chosenCard = cards[Math.floor(Math.random() * cards.length)];
+  const chosenName = chosenCard.dataset.name;
+  const chosenLink = chosenCard.querySelector('a');
+
+  /* ---- HOT LINK (TOP BADGE) ---- */
+  const hotSite = document.getElementById('hot-site');
+  if (hotSite && chosenLink) {
+    hotSite.innerHTML = `🔥 Hot Faucet Today: <a href="${chosenLink.href}" target="_blank" style="color: var(--neon); text-decoration: underline;">${chosenName}</a>`;
+  }
+
+  /* ---- STICKY CTA ---- */
+  const cta = document.getElementById('sticky-cta');
+  const ctaTitle = document.getElementById('ctaTitle');
+  const ctaLink = document.getElementById('ctaLink');
+  const closeBtn = document.getElementById('cta-close');
+
+  ctaTitle.textContent = chosenName;
+  ctaLink.href = chosenLink.href;
+  ctaLink.textContent = 'Sign Up for ' + chosenName;
+
+  // Glow after 5 seconds
+  setTimeout(() => cta.classList.add('pulse'), 5000);
+
+  // Close button works and stays closed until reload
+  closeBtn.addEventListener('click', () => {
+    cta.classList.add('hidden');
+  });
+
+  /* ---- CLICK TRACKING ---- */
+  cards.forEach(card => {
+    const link = card.querySelector('a');
+    link.addEventListener('click', () => {
+      // GoatCounter auto-tracks outbound clicks
+    });
+  });
+</script>
+
+</body>
+</html>
