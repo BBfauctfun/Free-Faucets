@@ -16,7 +16,6 @@
     :root {
       --neon: #00f5ff;
       --pink: #b400ff;
-      --bg: #05070b;
     }
 
     * { box-sizing: border-box; }
@@ -41,21 +40,21 @@
       color: var(--neon);
       padding: 10px 14px;
       display: inline-block;
-      margin-bottom: 18px;
-      font-size: 0.85rem;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
       letter-spacing: 0.12em;
     }
 
     h1 {
       font-size: clamp(2.2rem, 6.5vw, 3rem);
-      margin: 12px 0 8px;
+      margin: 16px 0 8px;
       text-shadow: 0 0 18px rgba(0,245,255,0.45);
     }
 
     .sub {
       font-size: 1rem;
       opacity: 0.9;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .links {
@@ -98,16 +97,17 @@
       opacity: 0.7;
     }
 
-    /* ===== STICKY CTA ===== */
+    /* ===== Sticky CTA ===== */
     #sticky-cta {
       position: fixed;
       left: 0;
-      bottom: 0;
+      bottom: env(safe-area-inset-bottom, 0);
       width: 100%;
       background: linear-gradient(135deg, var(--neon), var(--pink));
       padding: 16px 14px 20px;
       z-index: 9999;
       box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+      transition: transform .3s ease, opacity .3s ease;
     }
 
     #sticky-cta.hidden {
@@ -140,6 +140,7 @@
       border: none;
       font-size: 1.2rem;
       cursor: pointer;
+      color: #000;
     }
 
     .cta-button {
@@ -150,13 +151,13 @@
       border-radius: 999px;
       font-weight: 800;
       text-decoration: none;
-      margin-top: 8px;
     }
   </style>
 </head>
-<body>
 
+<body>
 <main>
+
   <div id="hot-site" class="badge">🔥 Hot Faucet Today</div>
   <div class="badge">FREE • FUN • EASY • TESTED & SCAM-FREE</div>
 
@@ -167,161 +168,45 @@
 
   <section class="links">
 
-    <!-- HIGH CONVERTORS FIRST -->
-    <div class="card" data-name="Cointiply">
-      <h2>Cointiply</h2>
-      <p>Well-established multi-coin faucet with surveys, offers, and reliable payouts.</p>
-      <a class="cta" href="https://cointiply.com/r/jMP74" target="_blank">Sign Up</a>
-    </div>
+    <!-- Tier 1 -->
+    <div class="card" data-name="Cointiply"><h2>Cointiply</h2><p>Trusted multi-earning faucet with proven payouts.</p><a class="cta" href="https://cointiply.com/r/jMP74" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="FireFaucet"><h2>FireFaucet</h2><p>Automated faucet that runs in the background.</p><a class="cta" href="https://firefaucet.win/ref/521433" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Dutchy AutoFaucet"><h2>Dutchy AutoFaucet</h2><p>Auto-claim rewards from many faucets.</p><a class="cta" href="https://autofaucet.dutchycorp.space/?r=brecken.baker@gmail.com" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="AutoFaucet"><h2>AutoFaucet</h2><p>Simple automated earning with no cost.</p><a class="cta" href="https://autofaucet.org/r/GrrlPlant" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="CryptoFlare"><h2>CryptoFlare</h2><p>Fast faucet claims with a clean interface.</p><a class="cta" href="https://cryptoflare.net/?r=280139" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="FaucetWorld"><h2>FaucetWorld</h2><p>Classic faucet hub with long-term payouts.</p><a class="cta" href="https://faucetworld.in/register?r=167608" target="_blank">Sign Up</a></div>
 
-    <div class="card" data-name="FireFaucet">
-      <h2>FireFaucet</h2>
-      <p>Automated faucet that runs continuously after completing simple tasks.</p>
-      <a class="cta" href="https://firefaucet.win/ref/521433" target="_blank">Sign Up</a>
-    </div>
+    <!-- Tier 2 -->
+    <div class="card" data-name="Litepick"><h2>Litepick</h2><p>Fast Litecoin faucet with simple claims.</p><a class="cta" href="https://litepick.io/?ref=GrrlPlant" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Free-Litecoin"><h2>Free-Litecoin</h2><p>Hourly LTC rolls and jackpots.</p><a class="cta" href="https://free-litecoin.com/login?referer=1208101" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Free-LTC"><h2>Free-LTC</h2><p>Simple Litecoin faucet with bonuses.</p><a class="cta" href="https://free-ltc.com/?ref=276196" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="FreeBitcoin"><h2>FreeBitcoin.io</h2><p>Bitcoin faucet with games and rolls.</p><a class="cta" href="https://freebitcoin.io/?ref=796745" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="FreeBTCcoin"><h2>FreeBTCcoin</h2><p>Classic Bitcoin faucet platform.</p><a class="cta" href="https://freebtcco.in?ref=hFnVzLNqaJ" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="FreeEthereum"><h2>FreeEthereum</h2><p>Free ETH claims with no risk.</p><a class="cta" href="https://freeethereum.com/?ref=428210" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="FreeDogecoin"><h2>Free-Dogecoin</h2><p>Dogecoin faucet with steady payouts.</p><a class="cta" href="https://free-doge.com/?ref=330277" target="_blank">Sign Up</a></div>
 
-    <div class="card" data-name="SimpleBits">
-      <h2>SimpleBits</h2>
-      <p>Beginner-friendly faucet focused on a gameified design.</p>
-      <a class="cta" href="https://simplebits.io/ref/U4w4gu_fTQNz" target="_blank">Sign Up</a>
-    </div>
+    <!-- Tier 3 -->
+    <div class="card" data-name="SimpleBits"><h2>SimpleBits</h2><p>Beginner-friendly, no-frills faucet.</p><a class="cta" href="https://simplebits.io/ref/U4w4gu_fTQNz" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Free-Tron"><h2>Free-Tron</h2><p>Quick TRX faucet claims.</p><a class="cta" href="https://free-tron.com/?ref=517863" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Free-XRP"><h2>Free-XRP</h2><p>Earn XRP through simple tasks.</p><a class="cta" href="https://coinfaucet.io/?ref=964239" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Free-BNB"><h2>Free-BinanceCoin</h2><p>Collect BNB from faucet claims.</p><a class="cta" href="https://freebinancecoin.com/?ref=412715" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Free-Shiba"><h2>Free Shiba Inu</h2><p>SHIB faucet with bonuses.</p><a class="cta" href="https://freeshibainu.com/?ref=202923" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Free-Pancake"><h2>Free Pancake Swap</h2><p>Earn CAKE via faucets.</p><a class="cta" href="https://freepancake.com/?ref=62267" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Free-Matic"><h2>Free Matic</h2><p>MATIC faucet rewards.</p><a class="cta" href="https://freematic.com/?ref=97547" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Free-BTT"><h2>Free BitTorrent</h2><p>Earn BTT via faucet claims.</p><a class="cta" href="https://freebittorrent.com/?ref=32076" target="_blank">Sign Up</a></div>
 
-<div class="card" data-name="Litepick">
-  <h2>Litepick</h2>
-  <p>Simple, Litecoin-focused faucet with fast claims and a clean interface.</p>
-  <a class="cta"
-     href="https://litepick.io/?ref=GrrlPlant"
-     target="_blank">
-     Sign Up
-  </a>
-</div>
-
-    <div class="card" data-name="Dutchy">
-      <h2>Dutchy AutoFaucet</h2>
-      <p>Auto-claim platform supporting many coins with long-standing reliability.</p>
-      <a class="cta" href="https://autofaucet.dutchycorp.space/?r=brecken.baker@gmail.com" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeBTCcoin">
-      <h2>FreeBTCcoin</h2>
-      <p>Classic Bitcoin faucet with games, bonuses, and steady payouts.</p>
-      <a class="cta" href="https://freebtcco.in?ref=hFnVzLNqaJ" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeDogecoin">
-      <h2>Free-Dogecoin</h2>
-      <p>Simple Dogecoin faucet offering fast claims and proven longevity.</p>
-      <a class="cta" href="https://free-doge.com/?ref=330277" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeLitecoin">
-      <h2>Free-Litecoin</h2>
-      <p>Hourly Litecoin faucet with jackpots and loyalty bonuses.</p>
-      <a class="cta" href="https://free-litecoin.com/login?referer=1208101" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeLTC">
-      <h2>Free-LTC</h2>
-      <p>Quick LTC claims through rolls and simple bonus mechanics.</p>
-      <a class="cta" href="https://free-ltc.com/?ref=276196" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeBitcoin">
-      <h2>FreeBitcoin.io</h2>
-      <p>Long-running Bitcoin faucet with lotteries and interest features.</p>
-      <a class="cta" href="https://freebitcoin.io/?ref=796745" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeEthereum">
-      <h2>FreeEthereum</h2>
-      <p>Ethereum faucet offering low-effort claims with no upfront cost.</p>
-      <a class="cta" href="https://freeethereum.com/?ref=428210" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeTron">
-      <h2>Free-Tron</h2>
-      <p>Fast TRX faucet with simple claims and bonus opportunities.</p>
-      <a class="cta" href="https://free-tron.com/?ref=517863" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeXRP">
-      <h2>Free-XRP</h2>
-      <p>Lightweight XRP faucet for casual, risk-free earning.</p>
-      <a class="cta" href="https://coinfaucet.io/?ref=964239" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeBinanceCoin">
-      <h2>Free-BinanceCoin</h2>
-      <p>BNB faucet offering quick claims and periodic promotions.</p>
-      <a class="cta" href="https://freebinancecoin.com/?ref=412715" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeShiba">
-      <h2>Free Shiba Inu</h2>
-      <p>SHIB faucet focused on simplicity and low-effort claims.</p>
-      <a class="cta" href="https://freeshibainu.com/?ref=202923" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreePancake">
-      <h2>Free Pancake Swap</h2>
-      <p>Earn CAKE tokens through faucet-style rewards.</p>
-      <a class="cta" href="https://freepancake.com/?ref=62267" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeMatic">
-      <h2>Free Matic</h2>
-      <p>MATIC faucet with fast claims and easy onboarding.</p>
-      <a class="cta" href="https://freematic.com/?ref=97547" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FreeBitTorrent">
-      <h2>Free BitTorrent</h2>
-      <p>BTT faucet offering simple tasks and steady payouts.</p>
-      <a class="cta" href="https://freebittorrent.com/?ref=32076" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="FaucetWorld">
-      <h2>FaucetWorld</h2>
-      <p>Multi-coin faucet hub with daily claims and offers.</p>
-      <a class="cta" href="https://faucetworld.in/register?r=167608" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="CryptoFlare">
-      <h2>CryptoFlare</h2>
-      <p>Clean faucet platform offering multiple crypto rewards.</p>
-      <a class="cta" href="https://cryptoflare.net/?r=280139" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="AutoFaucet">
-      <h2>AutoFaucet</h2>
-      <p>Set-and-forget faucet system for hands-free earning.</p>
-      <a class="cta" href="https://autofaucet.org/r/GrrlPlant" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="Tonpick">
-      <h2>Tonpick</h2>
-      <p>TON faucet offering fast claims and clean UI.</p>
-      <a class="cta" href="https://tonpick.game/?ref=Vixit79" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="Solpick">
-      <h2>Solpick</h2>
-      <p>Solana-based faucet with easy, low-risk earning.</p>
-      <a class="cta" href="https://solpick.io/?ref=Vixit79" target="_blank">Sign Up</a>
-    </div>
-
-    <div class="card" data-name="Tronpick">
-      <h2>Tronpick</h2>
-      <p>TRON faucet designed for fast claims and simplicity.</p>
-      <a class="cta" href="https://tronpick.io/?ref=GrrlPlant" target="_blank">Sign Up</a>
-    </div>
+    <!-- Tier 4 -->
+    <div class="card" data-name="Tonpick"><h2>Tonpick</h2><p>TON faucet with quick claims.</p><a class="cta" href="https://tonpick.game/?ref=Vixit79" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Solpick"><h2>Solpick</h2><p>Solana faucet rewards.</p><a class="cta" href="https://solpick.io/?ref=Vixit79" target="_blank">Sign Up</a></div>
+    <div class="card" data-name="Tronpick"><h2>Tronpick</h2><p>TRON-based faucet platform.</p><a class="cta" href="https://tronpick.io/?ref=GrrlPlant" target="_blank">Sign Up</a></div>
 
   </section>
 
   <footer>
-    <p>Links open in new tabs • Faucets tested for functionality • Not financial advice</p>
+    <p>Links open in new tabs • Faucets tested • Not financial advice</p>
     <p>Analytics by GoatCounter • Hosted on GitHub Pages</p>
   </footer>
+
 </main>
 
 <!-- Sticky CTA -->
@@ -329,7 +214,7 @@
   <button id="cta-close">✕</button>
   <div class="cta-inner">
     <div class="cta-label">🔥 Trending Today</div>
-    <div class="cta-title" id="ctaTitle"></div>
+    <div id="ctaTitle"></div>
     <a id="ctaLink" class="cta-button" target="_blank">Sign Up</a>
   </div>
 </div>
@@ -339,21 +224,17 @@
   const chosen = cards[Math.floor(Math.random() * cards.length)];
   const link = chosen.querySelector('a');
 
-  document.getElementById('hot-site').innerHTML =
-    `🔥 Hot Faucet Today: <a href="${link.href}" target="_blank" style="color:#00f5ff;text-decoration:underline">${chosen.dataset.name}</a>`;
-
   document.getElementById('ctaTitle').textContent = chosen.dataset.name;
   document.getElementById('ctaLink').href = link.href;
 
-  const cta = document.getElementById('sticky-cta');
-  setTimeout(() => cta.classList.add('pulse'), 5000);
+  document.getElementById('hot-site').innerHTML =
+    `🔥 Hot Faucet Today: <a href="${link.href}" target="_blank" style="color: var(--neon); text-decoration: underline;">${chosen.dataset.name}</a>`;
 
-  document.getElementById('cta-close').onclick = () => {
-    cta.classList.add('hidden');
-  };
+  setTimeout(() => document.getElementById('sticky-cta').classList.add('pulse'), 5000);
+
+  document.getElementById('cta-close').onclick = () =>
+    document.getElementById('sticky-cta').classList.add('hidden');
 </script>
 
 </body>
 </html>
-
-
